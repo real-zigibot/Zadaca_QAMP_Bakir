@@ -88,7 +88,7 @@ public Calculator Multiply(){
 public Calculator circleSurfaceArea(){
 Scanner someObj=new Scanner(System.in);
 System.out.print("Unesi poluprecnik zeljenog kruga: ");
-result=r*r*PI;
+result= someObj.nextDouble()* someObj.nextDouble()*PI;
 return this;
 }
 
@@ -105,7 +105,8 @@ public Calculator multiplyNnumbers(){
 }
 */
     public static void main(String[] args) {
-        Calculator obj=new Calculator(0,4,5);
+        Calculator obj=new Calculator();
+        obj.writeObjectOut();
         obj.setDiameter(10);
         obj.setOperandA(80);
         obj.setOperandB(9);
