@@ -34,48 +34,63 @@ public void setOperandsAandB(double a, double b){ this.a=a; this.b=b;}
 public void writeObjectOut(){
     System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r);
 }
-public void writeObjectOut(boolean x){
+private void writeObjectOut(boolean x){
         System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r+"\nRezultat operacije je: "+result);
     }
 
-public double Add(double a,double b){
+public Calculator Add(double a,double b){
     result=this.a/this.b;
     this.writeObjectOut(true);
-return result;
+return this;
 }
-public double Add(){
+public Calculator Add(){
     result=this.a/this.b;
     this.writeObjectOut(true);
-    return result;
+    return this;
     }
-public double Divide(double a,double b){// uzeo sam double da izbjegnemo potrebu za obilazenjem dijeljenja nulom
+public Calculator Divide(double a,double b){// uzeo sam double da izbjegnemo potrebu za obilazenjem dijeljenja nulom
     result=this.a/this.b;
     this.writeObjectOut(true);
-    return result;
+    return this;
     }
-    public double Divide(){
+    public Calculator Divide(){
         result=this.a/this.b;
-        this.writeObjectOut(true);   //rezultat dodat kao argument sklase da mozemo ulancavati operacije
-        return result;
+        this.writeObjectOut(true);   //rezultat dodat kao argument klase da mozemo ulancavati operacije, a i istovremeno imati sacuvan rez
+        return this;
     }
-public double Subtract(double a,double b){
+public Calculator Subtract(double a,double b){
     result=this.a-this.b;
     this.writeObjectOut(true);
- return result;
+ return this;
+
 }
-
-
+public  Calculator circleSurfaceArea(){
+Scanner someObj=new Scanner(System.in);
+System.out.print("Unesi poluprecnik zeljenog kruga: ");
+result=r*r*PI;
+return this;
+}
+    public  Calculator circleSurfaceArea(double r){
+    result=r*r*PI;
+    return this;
+    }
     public static void main(String[] args) {
-    Calculator obj=new Calculator(0,4,5);
-    obj.setDiameter(10);
-    obj.setOperandA(80);
-    obj.setOperandB(9);
-    obj.setOperandsAandB(90,0);
-    obj.Divide();
-    obj.Divide(10,5);
-    System.out.println(obj.a+" "+obj.b+"");
-    obj.writeObjectOut();
-    //System.exit(0);
+        Calculator obj=new Calculator(0,4,5);
+        obj.setDiameter(10);
+        obj.setOperandA(80);
+        obj.setOperandB(9);
+        obj.setOperandsAandB(90,0);
+        obj.Divide();
+        obj.Divide(10,5);
+        obj.writeObjectOut();
+        System.out.println(obj.a+" "+obj.b);
+        obj.writeObjectOut();
+        obj.circleSurfaceArea(10).writeObjectOut();
+        //System.exit(0);
 
     }
-}
+
+
+};
+
+
