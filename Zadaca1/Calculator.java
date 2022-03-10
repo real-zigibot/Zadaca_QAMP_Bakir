@@ -32,25 +32,39 @@ public void setOperandsAandB(double a, double b){ this.a=a; this.b=b;}
     System.out.println("Bgm ovo postaje polako jedan fin kalkulatorcic \n"+this.a+" "+this.b);
 }*/
 public void writeObjectOut(){
-    System.out.println("Trenutni prvi operand: "+this.a+"\nTrenutni drugi operand: "+this.b+"\nTrenutni poluprecnik za krug: "+this.r);
+    System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r);
 }
+public void writeObjectOut(boolean x){
+        System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r+"\nRezultat operacije je: "+result);
+    }
 
 public double Add(double a,double b){
-return this.a+this.b;
-}
-public double Divide(double a,double b){// uzeo sam double da izbjegnemo potrebu za obilazenjem dijeljenja s nulom
-    this.a=a;
-    this.b=b;
     result=this.a/this.b;
+    this.writeObjectOut(true);
+return result;
+}
+public double Add(){
+    result=this.a/this.b;
+    this.writeObjectOut(true);
+    return result;
+    }
+public double Divide(double a,double b){// uzeo sam double da izbjegnemo potrebu za obilazenjem dijeljenja nulom
+    result=this.a/this.b;
+    this.writeObjectOut(true);
     return result;
     }
     public double Divide(){
         result=this.a/this.b;
+        this.writeObjectOut(true);   //rezultat dodat kao argument sklase da mozemo ulancavati operacije
         return result;
     }
 public double Subtract(double a,double b){
- return this.a-this.b;
+    result=this.a-this.b;
+    this.writeObjectOut(true);
+ return result;
 }
+
+
     public static void main(String[] args) {
     Calculator obj=new Calculator(0,4,5);
     obj.setDiameter(10);
@@ -59,7 +73,7 @@ public double Subtract(double a,double b){
     obj.setOperandsAandB(90,0);
     obj.Divide();
     obj.Divide(10,5);
-    System.out.println(obj.a+" "+obj.b);
+    System.out.println(obj.a+" "+obj.b+"");
     obj.writeObjectOut();
     //System.exit(0);
 
