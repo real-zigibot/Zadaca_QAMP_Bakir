@@ -34,44 +34,48 @@ public void setOperandsAandB(double a, double b){ this.a=a; this.b=b;}
 public void writeObjectOut(){
     System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r);
 }
-private void writeObjectOut(boolean x){
-        System.out.println("Trenutni prvi operand: "+a+"\nTrenutni drugi operand: "+b+"\nTrenutni poluprecnik za krug: "+r+"\nRezultat operacije je: "+result);
+public static void writeObjectOut(Calculator x){
+        System.out.println("Trenutni prvi operand: "+x.a+"\nTrenutni drugi operand: "+x.b+"\nTrenutni poluprecnik za krug: "+x.r+"\nRezultat operacije je: "+x.result);
     }
 
 public Calculator Add(double a,double b){
     result=this.a/this.b;
-    this.writeObjectOut(true);
+    writeObjectOut(this);                //static ovdje dodan za metode kao proof koncepta
+                                            // access modifikatora. Mozemo je koristiti bez instance objekta klase,
+                                             //odnosno kao "obicnu" funkciju. Ona se nazalost onda ne moze lancati.
 return this;
 }
 public Calculator Add(){
     result=this.a/this.b;
-    this.writeObjectOut(true);
+    writeObjectOut(this);
     return this;
     }
 public Calculator Divide(double a,double b){// uzeo sam double da izbjegnemo potrebu za obilazenjem dijeljenja nulom
     result=this.a/this.b;
-    this.writeObjectOut(true);
+    writeObjectOut(this);
     return this;
     }
     public Calculator Divide(){
         result=this.a/this.b;
-        this.writeObjectOut(true);   //rezultat dodat kao argument klase da mozemo ulancavati operacije, a i istovremeno imati sacuvan rez
+        writeObjectOut(this);   //rezultat dodat kao argument klase da mozemo ulancavati operacije,
+                                    // a i istovremeno imati sacuvan rez
         return this;
     }
 public Calculator Subtract(double a,double b){
     result=this.a-this.b;
-    this.writeObjectOut(true);
+    writeObjectOut(this);
  return this;
 
 }
-public  Calculator circleSurfaceArea(){
+public Calculator circleSurfaceArea(){
 Scanner someObj=new Scanner(System.in);
 System.out.print("Unesi poluprecnik zeljenog kruga: ");
 result=r*r*PI;
 return this;
 }
-    public  Calculator circleSurfaceArea(double r){
-    result=r*r*PI;
+
+    public Calculator circleSurfaceArea(double r){
+    this.result=r*r*this.PI;
     return this;
     }
     public static void main(String[] args) {
@@ -85,7 +89,7 @@ return this;
         obj.writeObjectOut();
         System.out.println(obj.a+" "+obj.b);
         obj.writeObjectOut();
-        obj.circleSurfaceArea(10).writeObjectOut();
+        obj.circleSurfaceArea().writeObjectOut();
         //System.exit(0);
 
     }
