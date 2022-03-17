@@ -24,7 +24,9 @@ public class Student {
         return this;
     }
 
-    public Student deleteStudent(int key) {
+    public Student deleteStudent(int key) throws Exception {
+        if(!studentInfo.containsKey(key))
+            throw new Exception("Nije moguce brisanje studenta iz baze, kljuc ne postoji.");
         studentInfo.remove(key);
         return this;
     }
@@ -45,7 +47,7 @@ public class Student {
 */
     public void writeNamesOut() {
         for (String value : studentInfo.values()) {
-            System.out.print("Vrijednost = " + value + " ");
+            System.out.print("Vrijednost = " + value + " \n");
         }
     }
 
@@ -57,15 +59,26 @@ public class Student {
     }
 
     public void writeOut() {
+        System.out.println("Svi studenti klase su:");
         writeStudentNumbersOut();
         writeNamesOut();
     }
-
+    public Student editStudent(int key, String newValue) throws  Exception{
+        if(!studentInfo.containsKey(key))
+            throw new Exception("Student pod datim kljucem ne postoji.");
+        studentInfo.replace(key,newValue);
+        return  this;
+    }
 
     public static void main(String[] args) {
         try {
             Student S = new Student();
             S.studentInfo.put(17899, "Igor");
+            S.writeOut();
+            S.deleteStudent(17899);
+            S.addStudent(18999,"Ivana");
+            S.writeOut();
+            S.editStudent(17999,"Alma");
             S.writeOut();
             System.exit(0);
 
