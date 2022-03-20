@@ -1,6 +1,4 @@
 import java.util.HashMap;
-import java.util.*;
-
 
 public class Student {
     private HashMap<Integer, String> studentInfo;
@@ -16,8 +14,8 @@ public class Student {
     public Student addStudent(int key, String name) throws Exception { //necemo da se entry u mapi preslika na
         // postojece podatke(overwrite nema smisla pa gledamo jedinstvneost kljuca)
         if (studentInfo.size() != 0)
-            for (Integer kljuc : studentInfo.keySet()) {
-                if (kljuc == key)
+            for (Integer loopkey : studentInfo.keySet()) {
+                if (loopkey == key)
                     throw new Exception("Proslijedjeni kljuc za novog studenta vec postoji.");
             }
         studentInfo.put(key, name);
@@ -52,8 +50,8 @@ public class Student {
     }
 
     public void writeStudentNumbersOut() {
-        for (Integer kljuc : studentInfo.keySet()) {
-            System.out.print("Kljuc = " + kljuc + " ");
+        for (Integer key : studentInfo.keySet()) {
+            System.out.print("Kljuc = " + key + " ");
         }
 
     }

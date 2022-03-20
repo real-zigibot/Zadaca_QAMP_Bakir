@@ -1,107 +1,115 @@
-
-import java.util.*;
-import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 import static java.lang.Math.sqrt;
 
+
 public class Numbers {
-    private ArrayList<Double> umbers;
+    private ArrayList<Double> numbers;
 
     private Numbers(ArrayList<Double> l) {
-        umbers = l;
+        numbers = l;
     }
 
     private Numbers() {
-        umbers = new ArrayList<Double>();
+        numbers = new ArrayList<Double>();
         Scanner someObj = new Scanner(System.in);
         System.out.println("Koliko brojeva zelis u listi: ");
         int size = someObj.nextInt();
         for (int i = 0; i < size; i++) {
             System.out.format("Unesi %d. broj: ", i + 1);
-            umbers.add(someObj.nextDouble());
+            numbers.add(someObj.nextDouble());
         }
     }
 
     public double getElement(int position) {
-        if(position>0) {
-            if (umbers.size() < position)
+        if (position > 0) {
+            if (numbers.size() < position) {
                 throw new ArrayIndexOutOfBoundsException("Lista nema element na poziciji");
-        }
-        else{
+            }
+        } else {
             throw new ArrayIndexOutOfBoundsException("Index negativan ili 0");
         }
-        return umbers.get(position-1);
+        return numbers.get(position - 1);
     }
 
     public Numbers setElement(int position, double element) {
-        if(position>0) {
-            if (umbers.size() < position)
+        if (position > 0) {
+            if (numbers.size() < position) {
                 throw new ArrayIndexOutOfBoundsException("Lista nema element na poziciji");
-            umbers.set(position - 1, element);
-        }
-        else{
+            }
+            numbers.set(position - 1, element);
+        } else {
             throw new ArrayIndexOutOfBoundsException("Index negativan ili 0 ");
         }
         return this;
     }
 
-    public Numbers addNnumbers() {
+    public void addNnumbers() {
         double sum = 0;
-        for (int i = 0; i < this.umbers.size(); i++) {
+        for (int i = 0; i < this.numbers.size(); i++) {
             //  writeOutFunction(90, i);
             // numbers.add(someObj.nextDouble());
-            sum += umbers.get(i);
+            sum += numbers.get(i);
         }
         System.out.println(sum);
-        return this;
     }
 
-    public Numbers addNnumbers(ArrayList<Double> array) {
+    public void addNnumbers(ArrayList<Double> array) { //dodano u slucaju da se zeli metoda primijeniti nad odredjenom
+        // instancom klase cak i kada ne zelimo da vrsimo prethodnu dodjelu sa "numbers"(ovdje array) argumentom
+        // druge instance
         double sum = 0;
-        umbers = array;
-        for (int i = 0; i < array.size(); i++)
-            sum += umbers.get(i);
+        numbers = array;
+        for (int i = 0; i < array.size(); i++) {
+            sum += numbers.get(i);
+        }
         //writeOutFunction(3,90);
         System.out.println(sum);
-        return this;
     }
 
     public double maxNumber() {
-        double max = umbers.get(0);
-        if (umbers.size() != 0)
-            for (int i = 0; i < umbers.size(); ++i) {
-                if (umbers.get(i) > max)
-                    max = umbers.get(i);
+        double max = numbers.get(0);
+        if (numbers.size() != 0) {
+            for (int i = 0; i < numbers.size(); ++i) {
+                if (numbers.get(i) > max) {
+                    max = numbers.get(i);
+                }
             }
+        }
         return max;
     }
 
     public double minNumber() {
-        double min = umbers.get(0);
-        if (umbers.size() != 0)
-            for (int i = 0; i < umbers.size(); ++i) {
-                if (umbers.get(i) < min)
-                    min = umbers.get(i);
+        double min = numbers.get(0);
+        if (numbers.size() != 0) {
+            for (int i = 0; i < numbers.size(); ++i) {
+                if (numbers.get(i) < min) {
+                    min = numbers.get(i);
+                }
             }
+        }
         return min;
     }
-    public boolean primeNumberCheck(Double number){
-        if(number.intValue()==1)
+
+    public boolean primeNumberCheck(Double number) {
+        if (number.intValue() == 1) {
             return false;
-        for(int i=2;i<=sqrt(number);++i){
-            if(number%i==0)
+        }
+        for (int i = 2; i <= sqrt(number); ++i) {
+            if (number % i == 0) {
                 return false;
+            }
         }
         return true;
     }
 
-    public Numbers primeNumberRemoval(){
-        for(int i=0;i<umbers.size();++i) {
-            if (!primeNumberCheck(umbers.get(i))) {
-                umbers.remove(i);
+    public void primeNumberRemoval() {
+        for (int i = 0; i < numbers.size(); ++i) {
+            if (!primeNumberCheck(numbers.get(i))) {
+                numbers.remove(i);
             }
         }
-        return this;
     }
 
 
@@ -113,16 +121,14 @@ public class Numbers {
             instance.addNnumbers();
             System.out.println(instance.maxNumber() + " " + instance.minNumber());
             instance.primeNumberRemoval();
-            for(Double element:instance.umbers)
+            for (Double element : instance.numbers) {
                 System.out.println(element.intValue());
-
-        }
-        catch (Exception e){
+            }
+        } catch (Exception e) {
             System.out.println(e);
         }
 
         System.exit(0);
     }
-
 
 }
