@@ -3,12 +3,9 @@ import java.util.Scanner;
 public abstract class Animal {
     protected String name;
     protected String food;
-    //protected int vaccinationCode;
+
 
     protected abstract void animalSound();
-
-    //Animal();
-
     final void setName() {
         System.out.println("Unesi ime svoje zivotinje: ");
         Scanner obj = new Scanner(System.in);
@@ -25,25 +22,32 @@ public abstract class Animal {
         return food;
     }
 
-    // Regular method
     final void sleep() {
         System.out.println("Zzz");
     }
 }
 
-// Subclass (inherit from Animal)
 class Dog extends Animal {
-    private String favoriteBone;
-    private boolean likesBigBones;
+    private String favoriteBone = new String();
+    private boolean likesBigBones = false;
 
-    Dog() {
-        favoriteBone = new String();
-        likesBigBones = false;
+    public Dog() {}
+
+    Dog(String name, String food, String bone, boolean preference) {
+        this.name = name;
+        this.food = food;
+        favoriteBone = bone;
+        likesBigBones = preference;
     }
 
-    Dog(String bone) {
-        favoriteBone = bone;
-        likesBigBones = false;
+    public Dog(String name, String food, String bone) {
+        this(name, food, bone, false);
+    }
+
+    public Dog(String name, String food) {
+        this();
+        this.name = name;
+        this.food = food;
     }
 
     public void animalSound() {
@@ -103,16 +107,16 @@ class SiameseCat extends Cat {
 
 class Main {
     public static void main(String[] args) {
-        Dog myPig = new Dog(); // Create a Pig object
-        myPig.animalSound();
-        myPig.sleep();
-        Cat macka = new Cat();
-        SiameseCat maca = new SiameseCat();
-        macka.animalSound();
-        macka.sleep();
-        maca.sleep();
-        maca.animalSound();
-        maca.getPedigreeNumber();
-        maca.setPedigree(17);
+        Dog Lucky = new Dog();
+        Lucky.animalSound();
+        Lucky.sleep();
+        Cat bigCat = new Cat();
+        SiameseCat newCat = new SiameseCat();
+        bigCat.animalSound();
+        bigCat.sleep();
+        newCat.sleep();
+        newCat.animalSound();
+        newCat.getPedigreeNumber();
+        newCat.setPedigree(17);
     }
 }
